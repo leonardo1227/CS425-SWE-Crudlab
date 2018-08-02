@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service("courseOfferService")
-public class CourseOfferService implements ICourseOfferService{
+public class CourseOfferService implements IService<CourseOffer>{
 
     @Autowired
     private ICourseOfferRepository courseOfferRepository;
