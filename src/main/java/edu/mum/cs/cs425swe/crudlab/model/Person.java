@@ -1,5 +1,7 @@
 package edu.mum.cs.cs425swe.crudlab.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -13,17 +15,15 @@ public class Person {
     @GeneratedValue
     private Long id;
 
-    @NotNull(message = "First Name is required!")
-    @NotEmpty(message = "First Name cannot be empty!")
+    @NotEmpty(message = "First Name is required!")
     private String firstName;
 
     private String middleName;
 
-    @NotNull(message = "Last Name is required!")
-    @NotEmpty(message = "Last Name cannot be empty!")
+    @NotEmpty(message = "Last Name is required!")
     private String lastName;
 
-    @NotNull(message = "Birthdate is required!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthdate;
 
     @OneToMany(mappedBy = "person")

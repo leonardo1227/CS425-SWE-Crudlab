@@ -1,8 +1,11 @@
 package edu.mum.cs.cs425swe.crudlab.service;
 
 import edu.mum.cs.cs425swe.crudlab.model.Faculty;
+import edu.mum.cs.cs425swe.crudlab.model.Person;
 import edu.mum.cs.cs425swe.crudlab.repository.IFacultyRepository;
+import edu.mum.cs.cs425swe.crudlab.repository.IPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,9 +17,17 @@ public class FacultyService implements IService<Faculty> {
     @Autowired
     private IFacultyRepository facultyRepository;
 
+    @Autowired
+    private IPersonRepository personRepository;
+
     @Override
     public List<Faculty> findAll() {
         return facultyRepository.findAll();
+    }
+
+    @Override
+    public List<Faculty> findAll(String orderingProperty) {
+        return facultyRepository.findAll(new Sort(Sort.Direction.ASC, orderingProperty));
     }
 
     @Override
@@ -27,6 +38,8 @@ public class FacultyService implements IService<Faculty> {
 
     @Override
     public Faculty save(Faculty faculty) {
+        Person person = personRepository.save(faculty.getPerson());
+        faculty.setPerson(person);
         return facultyRepository.save(faculty);
     }
 

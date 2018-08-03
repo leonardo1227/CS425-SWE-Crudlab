@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}"/>
+    <title>CRUDLAB - STUDENT VIEW INFORMATION</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <form id="viewStudentInformationForm" th:object="${viewingStudent}">
+        <div>
+            <span style="font-size: 1.5em">Information about the Student</span>
+            <span style="float: right">
+                <a class="btn btn-primary" th:href="@{'/crudlab/students'}">Back to the List</a>
+                <a class="btn btn-secondary" th:href="@{'/crudlab/student/edit/'+${viewingStudent.id}}">Edit</a>
+            </span>
+        </div>
+
+      <p>&nbsp;</p>
+
+        <dl class="row">
+            <dt class="col-sm-2">Student ID</dt>
+            <dd class="col-sm-10" th:text="${viewingStudent.studentId}"></dd>
+
+            <dt class="col-sm-2">First Name</dt>
+            <dd class="col-sm-10" th:text="${viewingStudent.person.firstName}"></dd>
+
+            <dt class="col-sm-2">Middle Name</dt>
+            <dd class="col-sm-10" th:text="${viewingStudent.person.middleName}"></dd>
+
+            <dt class="col-sm-2">Last Name</dt>
+            <dd class="col-sm-10" th:text="${viewingStudent.person.lastName}"></dd>
+
+            <dt class="col-sm-2">Birthdate</dt>
+            <dd class="col-sm-10" th:text="${viewingStudent.person.birthdate}"></dd>
+        </dl>
+
+        <div th:if="${viewingStudent.attendances!=null&&viewingStudent.attendances.size()>0}">
+            <h4 style="alignment: center">Class Attendance Registered for this student</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Course</th>
+                        <th scope="col">Teacher</th>
+                        <th scope="col">Section</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="a : ${viewingStudent.attendances}">
+                        <td th:text="${a.courseOffer.course.cod}+'-'+${a.courseOffer.course.name}"></td>
+                        <td th:text="${a.courseOffer.faculty.person.firstName}+' '+${a.courseOffer.faculty.person.lastName}"></td>
+                        <td th:text="${a.courseOffer.section}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${viewingStudent.attendances==null||viewingStudent.attendances.size()==0}">
+            <h4 style="color:red">There is not any class attendance registered for this student yet!</h4>
+        </div>
+
+    </form>
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>

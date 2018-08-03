@@ -3,8 +3,10 @@ package edu.mum.cs.cs425swe.crudlab.service;
 import edu.mum.cs.cs425swe.crudlab.model.Person;
 import edu.mum.cs.cs425swe.crudlab.repository.IPersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,11 @@ public class PersonService implements IService<Person> {
     @Override
     public List<Person> findAll() {
         return personRepository.findAll();
+    }
+
+    @Override
+    public List<Person> findAll(String orderingProperty) {
+        return personRepository.findAll(new Sort(Sort.Direction.ASC, orderingProperty));
     }
 
     @Override
@@ -34,4 +41,8 @@ public class PersonService implements IService<Person> {
     public void deleteById(Long id) {
         personRepository.deleteById(id);
     }
+
+    /*public List<Person> findByFirstNameAndMiddleNameAndLastNameAndBirthDate(String fisrtName, String middleName, String lastName, LocalDate birthdate){
+        return personRepository.findByFirstNameAAndMiddleNameAndLastNameAndBirthdate(fisrtName,middleName,lastName,birthdate);
+    }*/
 }

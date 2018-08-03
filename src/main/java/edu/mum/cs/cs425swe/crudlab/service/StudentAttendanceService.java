@@ -3,6 +3,7 @@ package edu.mum.cs.cs425swe.crudlab.service;
 import edu.mum.cs.cs425swe.crudlab.model.StudentAttendance;
 import edu.mum.cs.cs425swe.crudlab.repository.IStudentAttendanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,11 @@ public class StudentAttendanceService implements  IService<StudentAttendance> {
     @Override
     public List<StudentAttendance> findAll() {
         return studentAttendanceRepository.findAll();
+    }
+
+    @Override
+    public List<StudentAttendance> findAll(String orderingProperty) {
+        return studentAttendanceRepository.findAll(new Sort(Sort.Direction.ASC, orderingProperty));
     }
 
     @Override

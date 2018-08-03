@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}"/>
+    <title>CRUDLAB - COURSE VIEW INFORMATION</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <form id="viewCourseInformationForm" th:object="${courseView}">
+        <div>
+            <span style="font-size: 1.5em">Information about the Course</span>
+            <span style="float: right">
+                <a class="btn btn-primary" th:href="@{'/crudlab/courses'}">Back to the List</a>
+                <a class="btn btn-secondary" th:href="@{'/crudlab/course/edit/'+${courseView.id}}">Edit</a>
+            </span>
+        </div>
+
+      <p>&nbsp;</p>
+
+        <dl class="row">
+            <dt class="col-sm-2">COD</dt>
+            <dd class="col-sm-10" th:text="${courseView.cod}"></dd>
+
+            <dt class="col-sm-2">Name</dt>
+            <dd class="col-sm-10" th:text="${courseView.name}"></dd>
+
+            <dt class="col-sm-2">Description</dt>
+            <dd class="col-sm-10" th:text="${courseView.description}"></dd>
+        </dl>
+
+        <div th:if="${courseView.offers!=null&&courseView.offers.size()>0}">
+            <h4 style="alignment: center">Offers Registered for this course</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Teacher</th>
+                        <th scope="col">Section</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="co : ${courseView.offers}">
+                        <td th:text="${co.faculty.person.firstName}+' '+${co.faculty.person.middleName}+' '+${co.faculty.person.lastName}"></td>
+                        <td th:text="${co.section}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${courseView.offers==null||courseView.offers.size()==0}">
+            <h4 style="color:red">There is not any offer registered for this course yet!</h4>
+        </div>
+
+    </form>
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>

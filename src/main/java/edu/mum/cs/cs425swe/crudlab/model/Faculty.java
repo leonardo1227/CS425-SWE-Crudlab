@@ -2,11 +2,13 @@ package edu.mum.cs.cs425swe.crudlab.model;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
 public class Faculty extends PersonRole{
 
+    @NotEmpty(message = "Faculty ID is required!")
     private String facultyId;
 
     @OneToMany(mappedBy = "faculty")

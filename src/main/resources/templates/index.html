@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
+    <title>CRUDLAB - Spring Boot Project for a lab's assignment of CS425-SWE Course at MUM of August block of 2018</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <h3>Welcome to the CRUD 6th LAB - Spring Boot Project with the following features:</h3>
+    <ul>
+        <li>Spring Web MVC with Thymeleaf View Template Engine</li>
+        <li>Spring Data - Java Persistence API (JPA) with Hibernate</li>
+        <li>Spring REST for providing RESTful Web Service endpoints</li>
+        <li>JQuery AJAX and JSON</li>
+        <li>Bootstrap 4 for CSS styling</li>
+        <li>PostgreSQL Database</li>
+    </ul>
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>

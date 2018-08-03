@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
+    <title>CRUDLAB - FACULTIES</title>
+</head>
+<body>
+    <th:block layout:fragment="content">
+
+        <div>
+            <span style="font-size: 1.5em">List of Faculties</span>
+            <span style="float: right">
+                <a class="btn btn-dark" href="/crudlab/faculty/new">New Faculty</a>
+            </span>
+        </div>
+
+        <p>&nbsp;</p>
+
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Faculty ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="f : ${faculties}">
+                    <td scope="row" th:text="${f.facultyId}"></td>
+                    <td th:text="${f.person.firstName}+' '+${f.person.middleName}+' '+${f.person.lastName}"></td>
+                    <td>
+                        <a th:href="@{'/crudlab/faculty/view/'+${f.id}}" class="btn btn-info">View</a>&nbsp;
+                        <a th:href="@{'/crudlab/faculty/delete/'+${f.id}}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </th:block>
+
+    <th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>

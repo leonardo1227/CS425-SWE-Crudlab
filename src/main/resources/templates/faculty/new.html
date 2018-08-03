@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
+    <title>CRUDLAB - NEW FACULTY REGISTRATION</title>
+</head>
+<body>
+    <th:block layout:fragment="content">
+        <form id="facultyRegistrationForm" method="post" action="/crudlab/faculty/new" th:object="${newFaculty}">
+            <fieldset>
+                <legend>New Faculty Registration Form</legend>
+
+
+                <div class="form-group">
+                    <label for="facultyIdField">Faculty ID:</label>
+                    <span th:if="${#fields.hasErrors('facultyId')}" th:errors="*{facultyId}" class="alert alert-danger"></span>
+                    <input id="facultyIdField" name="facultyIdField" type="text" class="form-control" th:field="*{facultyId}"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstNameField">First Name:</label>
+                    <span th:if="${#fields.hasErrors('person.firstName')}" th:errors="*{person.firstName}" class="alert alert-danger"></span>
+                    <input id="firstNameField" name="firstNameField" type="text" class="form-control" th:field="*{person.firstName}"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="middleNameField">Middle Name:</label>
+                    <input id="middleNameField" name="middleNameField" type="text" class="form-control" th:field="*{person.middleName}"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastNameField">Last Name:</label>
+                    <span th:if="${#fields.hasErrors('person.lastName')}" th:errors="*{person.lastName}" class="alert alert-danger"></span>
+                    <input id="lastNameField" name="lastNameField" type="text" class="form-control" th:field="*{person.lastName}"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthdateField">Birthdate:</label>
+                    <span th:if="${#fields.hasErrors('person.birthdate')}" th:errors="*{person.birthdate}" class="alert alert-danger"></span>
+                    <input id="birthdateField" name="birthdateField" class="form-control" type="date" th:field="*{person.birthdate}"/>
+                </div>
+
+                <div style="float:right">
+                    <a href="/crudlab/faculties" class="btn btn-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    <button id="btnSubmit" type="submit" class="btn btn-success">Register Student</button>
+                </div>
+
+            </fieldset>
+
+        </form>
+    </th:block>
+
+    <th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>

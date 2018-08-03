@@ -3,6 +3,7 @@ package edu.mum.cs.cs425swe.crudlab.service;
 import edu.mum.cs.cs425swe.crudlab.model.CourseOffer;
 import edu.mum.cs.cs425swe.crudlab.repository.ICourseOfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,11 @@ public class CourseOfferService implements IService<CourseOffer>{
     @Override
     public List<CourseOffer> findAll() {
         return courseOfferRepository.findAll();
+    }
+
+    @Override
+    public List<CourseOffer> findAll(String orderingProperty) {
+        return courseOfferRepository.findAll(new Sort(Sort.Direction.ASC, orderingProperty));
     }
 
     @Override

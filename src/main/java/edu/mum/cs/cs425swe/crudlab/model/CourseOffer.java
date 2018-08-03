@@ -1,6 +1,7 @@
 package edu.mum.cs.cs425swe.crudlab.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,8 +17,10 @@ public class CourseOffer {
     @ManyToOne
     private Faculty faculty;
 
+    private String section;
+
     @OneToMany(mappedBy = "courseOffer")
-    private List<StudentAttendance> attendances;
+    private List<StudentAttendance> attendances = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -45,6 +48,14 @@ public class CourseOffer {
 
     public List<StudentAttendance> getAttendances() {
         return attendances;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
     }
 
     public void setAttendances(List<StudentAttendance> attendances) {
