@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{masterlayout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homepage/index.css}" />
+    <title>CRUDLAB - ASSIGNMENT THE COURSE TO STUDENT</title>
+</head>
+<body>
+    <th:block layout:fragment="content">
+        <form id="studentRegistrationForm" method="post" action="/crudlab/student-class-assginament/new" th:object="${newStudentAttendance}">
+            <fieldset>
+                <legend>New Assignment the Course to Student Form</legend>
+
+                <input type="hidden" name="studentId" th:field="*{student.id}" />
+
+                <dl class="row">
+                    <dt class="col-sm-2">Student ID</dt>
+                    <dd class="col-sm-10" th:text="*{student.studentId}"></dd>
+
+                    <dt class="col-sm-2">First Name</dt>
+                    <dd class="col-sm-10" th:text="*{student.person.firstName}"></dd>
+
+                    <dt class="col-sm-2">Middle Name</dt>
+                    <dd class="col-sm-10" th:text="*{student.person.middleName}"></dd>
+
+                    <dt class="col-sm-2">Last Name</dt>
+                    <dd class="col-sm-10" th:text="*{student.person.lastName}"></dd>
+                </dl>
+
+
+                <div class="form-group">
+                    <label for="courseField" style="font-weight: bold">Course:</label>
+                    <select th:field="*{courseOffer.id}" id="courseField" name="courseField" class="form-control">
+                        <option value="null" selected>Select a Course Offer</option>
+                        <option th:each="co : ${courseOffers}" th:value="${co.id}" th:text="${co.course.cod}+'-'+${co.course.name}+' - '+${co.section}+' - '+${co.faculty.person.firstName}+' '+${co.faculty.person.lastName}"></option>
+                    </select>
+                </div>
+
+
+
+                <div style="float:right">
+                    <a href="/crudlab/students" class="btn btn-warning">Cancel</a>&nbsp;&nbsp;&nbsp;
+                    <button id="btnSubmit" type="submit" class="btn btn-success">Register Course to Student</button>
+                </div>
+
+            </fieldset>
+
+        </form>
+    </th:block>
+
+    <th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>

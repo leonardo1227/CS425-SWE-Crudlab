@@ -21,17 +21,18 @@
         <table class="table table-hover">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Student ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" style="text-align: center">Student ID</th>
+                    <th scope="col" style="text-align: center">Name</th>
+                    <th scope="col" style="text-align: center">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="s : ${students}">
-                    <td scope="row" th:text="${s.studentId}"></td>
+                    <td scope="row" th:text="${s.studentId}" style="text-align: center"></td>
                     <td th:text="${s.person.firstName}+' '+${s.person.middleName}+' '+${s.person.lastName}"></td>
-                    <td>
+                    <td style="text-align: center">
                         <a th:href="@{'/crudlab/student/view/'+${s.id}}" class="btn btn-info">View</a>&nbsp;
+                        <a th:href="@{'/crudlab/student-course-assignament/new/'+${s.id}}" class="btn btn-secondary">Enroll in a Course</a>&nbsp;
                         <a th:href="@{'/crudlab/student/delete/'+${s.id}}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>

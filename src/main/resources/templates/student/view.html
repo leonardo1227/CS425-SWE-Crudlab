@@ -17,7 +17,7 @@
             </span>
         </div>
 
-      <p>&nbsp;</p>
+        <p>&nbsp;</p>
 
         <dl class="row">
             <dt class="col-sm-2">Student ID</dt>
@@ -36,22 +36,26 @@
             <dd class="col-sm-10" th:text="${viewingStudent.person.birthdate}"></dd>
         </dl>
 
+        <span style="float: right">
+            <a th:href="@{'/crudlab/student-course-assignament/new/'+${viewingStudent.id}}" class="btn btn-secondary">Enroll in a Course</a>&nbsp;
+        </span>
+
         <div th:if="${viewingStudent.attendances!=null&&viewingStudent.attendances.size()>0}">
             <h4 style="alignment: center">Class Attendance Registered for this student</h4>
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th scope="col">Course</th>
-                        <th scope="col">Teacher</th>
-                        <th scope="col">Section</th>
-                    </tr>
+                <tr>
+                    <th scope="col">Course</th>
+                    <th scope="col">Teacher</th>
+                    <th scope="col">Section</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="a : ${viewingStudent.attendances}">
-                        <td th:text="${a.courseOffer.course.cod}+'-'+${a.courseOffer.course.name}"></td>
-                        <td th:text="${a.courseOffer.faculty.person.firstName}+' '+${a.courseOffer.faculty.person.lastName}"></td>
-                        <td th:text="${a.courseOffer.section}"></td>
-                    </tr>
+                <tr th:each="a : ${viewingStudent.attendances}">
+                    <td th:text="${a.courseOffer.course.cod}+'-'+${a.courseOffer.course.name}"></td>
+                    <td th:text="${a.courseOffer.faculty.person.firstName}+' '+${a.courseOffer.faculty.person.lastName}"></td>
+                    <td th:text="${a.courseOffer.section}"></td>
+                </tr>
                 </tbody>
             </table>
         </div>
