@@ -13,10 +13,16 @@
                 <legend>New Course Registration Form</legend>
 
 
-                <div class="form-group">
+                <!--<div class="form-group" th:classappend="${#fields.hasErrors('cod')} ? 'has-error'">
                     <label for="codField">COD:</label>
-                    <span th:if="${#fields.hasErrors('cod')}" th:errors="*{cod}" class="alert alert-danger"></span>
                     <input id="codField" name="codField" type="text" class="form-control" th:field="*{cod}"/>
+                    <span th:if="${#fields.hasErrors('cod')}" th:errors="*{cod}" class="help-block"></span>
+                </div>-->
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('cod')} ? 'has-error'">
+                    <label for="codField">COD</label>
+                    <input type="text" class="form-control" id="codField" name="codField" th:field="*{cod}" />
+                    <span th:if="${#fields.hasErrors('cod')}" th:errors="*{cod}" id="errorCOD" class="help-block"></span>
                 </div>
 
                 <div class="form-group">
